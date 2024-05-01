@@ -139,6 +139,59 @@ roslaunch ifo_gazebo ifo_empty_world_1.launch
 ```
 cd ~/catkin_ws
 source ~/.bashrc
-rosrun mavros_px4_vehicle training_world.py
+rosrun mavros_px4_vehicle train_main_d3qn.py
 ```
-## 2: Apply model compression techniques to that baseline model and then convert to onnx
+
+## 2: Apply model compression techniques to the baseline model and then convert to onnx
+### Step 2.1 - Copy the files from this github repository into the appropriate places as outlined bellow
+#### Step 2.1a - Open sublime text
+```
+cd ~/catkin_ws
+subl .
+```
+#### Step 2.1b - Add 9 python scripts to '~/catkin_ws/src/mavros-px4-vehicle/scripts'
+##### Step 2.1bi - Navigate to '~/catkin_ws/src/mavros-px4-vehicle/scripts' and create 9 empty files
+```
+cd ~/catkin_ws/src/mavros-px4-vehicle/scripts
+touch {deep_q_network_learner, dueling_deep_q_network, eval_d3qn_agent, kd_dqn_agent, kd_main_dqn, neuron_prune_drone_gym_gazebo_env, neuron_prune_main, onnx_to_onnxHalf, pytorch_to_onnx}.py
+```
+##### Step 2.1bii - Copy and paste the contents of the 9 python files with the 9 names from the touch command into their respective files on your computer with Sublime Text (and save before exiting files)
+##### Step 2.1biii - Change lines in 'kd_main_dqn.py' and 'neuron_prune_main.py' that are specific to your computer (highlighted by comments)
+##### Step 2.1biv - Ensure the python scripts are executable
+```
+cd ~/catkin_ws/src/mavros-px4-vehicle/scripts
+chmod +x *.py
+```
+### Step 2.2 - Neuron prune
+#### Step 2.2a - Run the bellow commands
+```
+cd ~
+roslaunch ifo_gazebo ifo_empty_world_1.launch
+```
+#### Step 2.2b - Open another terminal tab and run the bellow command
+```
+rosrun mavros_px4_vehicle neuron_prune_main.py
+```
+
+### Step 2.3 - Knowledge Distillation
+#### Step 2.3a - Run the bellow commands
+```
+cd ~
+roslaunch ifo_gazebo ifo_empty_world_1.launch
+```
+#### Step 2.3b - Open another terminal tab and run the bellow command
+```
+rosrun mavros_px4_vehicle kd_main_dqn.py
+```
+
+### Step 2.4 - Pytorch to ONNX:
+#### Step 2.4a - change to the scripts folder directory and run the bellow command
+```
+python3 pytorch_to_onnx.py
+```
+
+### Step 2.4 - ONNX to ONNX_half:
+#### Step 2.4a - change to the scripts folder directory and run the bellow command
+```
+python3 onnx_to_onnxHalf.py
+```
