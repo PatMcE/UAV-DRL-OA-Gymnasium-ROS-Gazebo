@@ -304,7 +304,7 @@ class DroneGymGazeboEnv(gymnasium.Env):
 
 		return combined_img_obs
 
-	def is_in_desired_position(self, current_position, epsilon=0.3):
+	def is_in_desired_position(self, current_position, epsilon=0.5):
 		"""
 		Return True if the current position is near desired poistion
 		"""
