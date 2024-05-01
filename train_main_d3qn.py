@@ -25,7 +25,7 @@ if __name__ == '__main__':
     parser.add_argument('-eps_start', type=float, default=1, help='What epsilon starts at')    
     parser.add_argument('-eps_min', type=float, default=0.05, help='Minimum value for epsilon in epsilon-greedy action selection')
     parser.add_argument('-exploration_steps', type=float, default=120000, help='Number of steps before epsilon levels out at eps_min')
-    parser.add_argument('-max_episodes', type=int, default=2)
+    parser.add_argument('-max_episodes', type=int, default=4000)
     parser.add_argument('-min_steps', type=int, default=200000)
     parser.add_argument('-acceptable_avg_reward', type=int, default=75)
     ############### Change the bellow line to match your system ###############
