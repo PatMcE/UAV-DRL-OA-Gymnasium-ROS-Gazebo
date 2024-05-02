@@ -190,8 +190,115 @@ rosrun mavros_px4_vehicle kd_main_dqn.py
 python3 pytorch_to_onnx.py
 ```
 
-### Step 2.4 - ONNX to ONNX_half:
-#### Step 2.4a - change to the scripts folder directory and run the bellow command
+### Step 2.5 - ONNX to ONNX_half:
+#### Step 2.5a - change to the scripts folder directory and run the bellow command
 ```
 python3 onnx_to_onnxHalf.py
+```
+
+## 3: Setup the nvidia jetson orin nano or nvidia jetson nano to run the models (as tensorrt engines)
+### Step 3.1 - Install Ubuntu 20.04 and ROS Noetic on jetson orin nano/jetson nano (for jetson nano install ubuntu 20.04 by following https://qengineering.eu/install-ubuntu-20.04-on-jetson-nano.html)
+### Step 3.2 - Execute the following commands:
+```
+sudo apt install python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
+sudo apt install python3-rosdep
+sudo rosdep init
+rosdep update
+roscore
+#cntrl+c
+sudo apt update
+sudo apt-get install python3-catkin-tools -y
+sudo apt install git
+```
+### Step 3.3 - Create catkin workspace:
+```
+source /opt/ros/noetic/setup.bash
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/
+catkin build
+source devel/setup.bash
+echo $ROS_PACKAGE_PATH
+```
+### Step 3.4 - More commands:
+```
+cd ~
+nano ubuntu_sim_ros_noetic.sh
+#fill ubuntu_sim_ros_noetic.sh with the contents of https://gist.githubusercontent.com/ekaktusz/a1065a2a452567cb04b919b20fdb57c4/raw/8be54ed561db7e3a2ce61c9c7b1fb9fec72501f4/ubuntu_sim_ros_noetic.sh
+#exit and save ubuntu_sim_ros_noetic.sh
+bash ubuntu_sim_ros_noetic.sh
+#answer 'y' for any prompts
+```
+### Step 3.5 - Get the ROS package that allows a user to communicate with PX4 autopilot using MAVROS by executing the following commands (based off https://github.com/troiwill/mavros-px4-vehicle):
+```
+#cnrl+c
+cd ~/catkin_ws/src
+git clone https://github.com/troiwill/mavros-px4-vehicle.git
+chmod +x mavros-px4-vehicle/scripts/*.py
+chmod +x mavros-px4-vehicle/test/*.py
+ln -s mavros-px4-vehicle mavros-px4-vehicle
+cd ~/catkin_ws
+catkin build
+source devel/setup.bash
+```
+### Step 3.6 - Install scipy, gymnasium, torch and re-install numpy so it v1.21:
+```
+pip3 install scipy
+pip3 install gymnasium
+pip3 install torch
+pip3 uninstall numpy
+pip3 install numpy=1.21
+```
+### Step 3.7 - Copy the files from this github repository into the appropriate places as outlined bellow
+#### Step 3.7a - Open sublime text
+```
+cd ~/catkin_ws
+subl .
+```
+#### Step 3.7b - Add 7 python scripts to '~/catkin_ws/src/mavros-px4-vehicle/scripts'
+##### Step 3.7bi - Navigate to '~/catkin_ws/src/mavros-px4-vehicle/scripts' and create 7 empty files (first set of instructions if jetson orin nano, second set if jetson nano)
+```
+cd ~/catkin_ws/src/mavros-px4-vehicle/scripts
+touch {eval_main_d3qn_trt_orin_nano, eval_main_dqn_trt_orin_nano, new_drone_gym_gazebo_env, new_drone_gym_gazebo_env_test, onnxHalf_to_trtHalf_orin_nano, onnx_to_trt_orin_nano, trt_utils}.py
+```
+```
+cd ~/catkin_ws/src/mavros-px4-vehicle/scripts
+touch {eval_main_d3qn_trt_nano, eval_main_dqn_trt_nano, new_drone_gym_gazebo_env, new_drone_gym_gazebo_env_test, onnxHalf_to_trtHalf_nano, onnx_to_trt_nano, trt_utils}.py
+```
+##### Step 3.7bii - Copy and paste the contents of the 9 python files with the 9 names from the touch command into their respective files on your computer with Sublime Text (and save before exiting files). Some file paths may need to be changed.
+##### Step 3.7biii - Ensure the python scripts are executable
+```
+cd ~/catkin_ws/src/mavros-px4-vehicle/scripts
+chmod +x *.py
+```
+### Step 3.8 - ONNX to TRT:
+#### Step 3.8a - change to the scripts folder directory and run the bellow command
+```
+python3 onnx_to_trt_orin_nano.py #onnx_to_trt_nano.py if jetson nano
+```
+
+### Step 3.9 - ONNX_half to TRT_half:
+#### Step 3.9a - change to the scripts folder directory and run the bellow command
+```
+python3 onnxHalf_to_trtHalf_orin_nano.py #onnxHalf_to_trtHalf_nano.py if jetson nano
+```
+
+### Step 3.10 - Run TRT engines on jetson orin nano/jetson nano:
+#### Step 3.10a - Setup LAN setup as shown in paper
+#### Step 3.10b - On Desktop where 192.168.8.107:11311 will be different for your machine (run ifconfig):
+```
+edit .bashrc file at ~ 
+export ROS_MASTER_URI=http://192.168.8.107:11311
+export ROS_IP=192.168.8.107
+sudo reboot
+source ~/.bashrc
+roslaunch ifo_gazebo ifo_empty_world_1.launch
+```
+#### Step 3.10c - On jetson orin nano/jetson nano where 192.168.8.134 will be different for you jetson device (run ifconfig):
+```
+edit .bashrc file at ~ 
+export ROS_MASTER_URI=http://192.168.8.107:11311
+export ROS_IP=192.168.8.134
+sudo reboot
+source ~/.bashrc
+rosrun mavros_px4_vehicle eval_main_d3qn_trt_orin_nano.py #or eval_main_d3qn_trt_nano.py or eval_main_dqn_trt_orin_nano.py or eval_main_dqn_trt_nano.py
 ```
