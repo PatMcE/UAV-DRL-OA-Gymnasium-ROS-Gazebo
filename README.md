@@ -1,7 +1,7 @@
 # UAV-DRL-OA-Gymnasium-ROS-Gazebo
 ## Overview 
 #### The code in this repository is connected to the yet to be published paper 'Towards Latency Efficient DRL Inference: Improving UAV Obstacle Avoidance at the Edge Through Model Compression'.
-#### The bellow steps provide instructions to 1) setup and train a D3QN baseline model on a Ubuntu 20.04 machine (e.g. desktop), 2) apply model compression techniques to that baseline model and then convert to onnx and 3) setup the nvidia jetson orin nano or nvidia jetson nano to run the models (as tensorrt engines)
+#### The bellow steps provide instructions to 1) setup and train a D3QN baseline model on a Ubuntu 20.04 machine (e.g. desktop), 2) apply model compression techniques to that baseline model and then convert to onnx and 3) setup the nvidia jetson orin nano or nvidia jetson nano to run the models (as TensorRT engines)
 ## 1: Setup and train a D3QN baseline model on a Ubuntu 20.04 machine (e.g. desktop)
 ### Step 1.1 - Ensure you have a Ubuntu 20.04 Machine and install ROS Noetic (http://wiki.ros.org/noetic/Installation/Ubuntu)
 ### Step 1.2 - Run various updates/installs and create a catkin workspace:
@@ -196,7 +196,7 @@ python3 pytorch_to_onnx.py
 python3 onnx_to_onnxHalf.py
 ```
 
-## 3: Setup the nvidia jetson orin nano or nvidia jetson nano to run the models (as tensorrt engines)
+## 3: Setup the nvidia jetson orin nano or nvidia jetson nano to run the models (as TensorRT engines)
 ### Step 3.1 - Install Ubuntu 20.04 and ROS Noetic on jetson orin nano/jetson nano (for jetson nano install ubuntu 20.04 by following https://qengineering.eu/install-ubuntu-20.04-on-jetson-nano.html)
 ### Step 3.2 - Execute the following commands:
 ```
