@@ -258,11 +258,11 @@ subl .
 ##### Step 3.7bi - Navigate to '~/catkin_ws/src/mavros-px4-vehicle/scripts' and create 7 empty files (first set of instructions if jetson orin nano, second set if jetson nano)
 ```
 cd ~/catkin_ws/src/mavros-px4-vehicle/scripts
-touch {eval_main_d3qn_trt_orin_nano, eval_main_dqn_trt_orin_nano, new_drone_gym_gazebo_env, new_drone_gym_gazebo_env_test, onnxHalf_to_trtHalf_orin_nano, onnx_to_trt_orin_nano, trt_utils}.py
+touch {eval_main_d3qn_trt_orin_nano, eval_main_dqn_trt_orin_nano, eval_drone_gym_gazebo_env, onnxHalf_to_trtHalf_orin_nano, onnx_to_trt_orin_nano, trt_utils}.py
 ```
 ```
 cd ~/catkin_ws/src/mavros-px4-vehicle/scripts
-touch {eval_main_d3qn_trt_nano, eval_main_dqn_trt_nano, new_drone_gym_gazebo_env, new_drone_gym_gazebo_env_test, onnxHalf_to_trtHalf_nano, onnx_to_trt_nano, trt_utils}.py
+touch {eval_main_d3qn_trt_nano, eval_main_dqn_trt_nano, eval_drone_gym_gazebo_env, onnxHalf_to_trtHalf_nano, onnx_to_trt_nano, trt_utils}.py
 ```
 ##### Step 3.7bii - Copy and paste the contents of the 7 python files with the 7 names from the touch command into their respective files on your jetson device with Sublime Text (and save before exiting files). Some file paths may need to be changed.
 ##### Step 3.7biii - Ensure the python scripts are executable
