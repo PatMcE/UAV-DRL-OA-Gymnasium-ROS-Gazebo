@@ -264,7 +264,7 @@ touch {eval_main_d3qn_trt_orin_nano, eval_main_dqn_trt_orin_nano, new_drone_gym_
 cd ~/catkin_ws/src/mavros-px4-vehicle/scripts
 touch {eval_main_d3qn_trt_nano, eval_main_dqn_trt_nano, new_drone_gym_gazebo_env, new_drone_gym_gazebo_env_test, onnxHalf_to_trtHalf_nano, onnx_to_trt_nano, trt_utils}.py
 ```
-##### Step 3.7bii - Copy and paste the contents of the 9 python files with the 9 names from the touch command into their respective files on your computer with Sublime Text (and save before exiting files). Some file paths may need to be changed.
+##### Step 3.7bii - Copy and paste the contents of the 7 python files with the 7 names from the touch command into their respective files on your jetson device with Sublime Text (and save before exiting files). Some file paths may need to be changed.
 ##### Step 3.7biii - Ensure the python scripts are executable
 ```
 cd ~/catkin_ws/src/mavros-px4-vehicle/scripts
