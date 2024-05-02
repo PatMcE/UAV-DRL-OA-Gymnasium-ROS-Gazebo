@@ -153,7 +153,7 @@ subl .
 ##### Step 2.1bi - Navigate to '~/catkin_ws/src/mavros-px4-vehicle/scripts' and create 9 empty files
 ```
 cd ~/catkin_ws/src/mavros-px4-vehicle/scripts
-touch {deep_q_network_learner, dueling_deep_q_network, eval_d3qn_agent, kd_dqn_agent, kd_main_dqn, neuron_prune_drone_gym_gazebo_env, neuron_prune_main, onnx_to_onnxHalf, pytorch_to_onnx}.py
+touch {deep_q_network_learner, dueling_deep_q_network, eval_d3qn_agent, kd_dqn_agent, kd_main_dqn, eval_prune_drone_gym_gazebo_env, neuron_prune_main, onnx_to_onnxHalf, pytorch_to_onnx}.py
 ```
 ##### Step 2.1bii - Copy and paste the contents of the 9 python files with the 9 names from the touch command into their respective files on your computer with Sublime Text (and save before exiting files)
 ##### Step 2.1biii - Change lines in 'kd_main_dqn.py' and 'neuron_prune_main.py' that are specific to your computer (highlighted by comments)
