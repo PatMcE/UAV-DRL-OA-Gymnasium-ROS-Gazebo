@@ -115,7 +115,7 @@ chmod +x *.py
 ```
 #### Step 1.6c - Replace 2 of your launch files
 ##### Step 1.6ci - Using Sublime Text, navigate to '~/catkin_ws/src/ifo_gazebo/ifo_gazebo/launch/ifo_empty_world_1.launch' and replace the contents with the file in this repo with the same name (and save). At line 9, change training_world.world to test_world.world if you want to launch test_world instead of training_world.
-##### Step 1.6cii - Using Sublime Text, navigate to '~/catkin_ws/src/ifo_gazebo/ifo_gazebo/launch/ifo_spawn_single.launch' and replace the contents with the file in this repo with the same name (and save). At lines 5 and 6 change default x and y values to change start position.
+##### Step 1.6cii - Using Sublime Text, navigate to '~/catkin_ws/src/ifo_gazebo/ifo_gazebo/launch/ifo_spawn_single.launch' and replace the contents with the file in this repo with the same name (and save). At lines 5 and 6 change default x and y values to change drone start position.
 #### Step 1.6d - Create a few folders and add two world files to one of them
 ##### Step 1.6di -  Create folders at '~/catkin_ws/src/mavros-px4-vehicle'
 ```
