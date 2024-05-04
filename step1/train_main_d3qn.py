@@ -36,7 +36,7 @@ if __name__ == '__main__':
 
     # Initialize/create ROS node and custom gym environment:
     rospy.init_node('drone_node', anonymous=True)
-    env = gymnasium.make('DroneGymGazeboEnv-v0') #'DroneGymGazeboEnv-v0' is the custom gym environment from drone_gym_gazebo_env
+    env = gymnasium.make('DroneGymGazeboEnv-v0') #'DroneGymGazeboEnv-v0' is the custom gymnasium environment from drone_gym_gazebo_env
 
     # Setup files/directories for saving/loading:
     figure_file = args.root_path + 'plots/D3QN.png' 
