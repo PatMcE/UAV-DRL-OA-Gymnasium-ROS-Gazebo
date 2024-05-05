@@ -34,7 +34,7 @@ if __name__ == '__main__':
     ##############################################################################
     args = parser.parse_args()
 
-    # Initialize/create ROS node and custom gym environment:
+    # Initialize/create ROS node and custom gymnasium environment:
     rospy.init_node('drone_node', anonymous=True)
     env = gymnasium.make('DroneGymGazeboEnv-v0') #'DroneGymGazeboEnv-v0' is the custom gymnasium environment from drone_gym_gazebo_env
 
