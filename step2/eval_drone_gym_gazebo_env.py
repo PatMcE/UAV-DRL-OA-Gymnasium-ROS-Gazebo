@@ -64,7 +64,7 @@ class DroneGymGazeboEnv(gymnasium.Env):
 
 		#Additional setup:
 		self.goal_reward = 100
-		self.speed = 0.48 #drone speed (m/s)
+		self.speed = 0.5 #drone speed (m/s)
 		self.action_duration = 0.5 #length of time of moving forward/left/right in a single step (in seconds)
 		self.possible_y_start_desired_points  = [0.0, -5.0, -10.0, -15.0] #used to randomize y starting and y desired position of drone everytime episode reset (see reset() function)
 		self.i = 0
